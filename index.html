@@ -83,15 +83,22 @@
 async function startCall() {
   if (callActive) return;
   try {
+    const callPanel = document.getElementById('callPanel');
+    callPanel.classList.remove('hidden');
+
     const t = await AgoraRTC.createMicrophoneAndCameraTracks();
-    localAudioTrack = t[0]; localVideoTrack = t[1];
+    localAudioTrack = t[0]; 
+    localVideoTrack = t[1];
     await rtcClient.join(agoraAppId, chat.id, null, null);
     await rtcClient.publish([localAudioTrack, localVideoTrack]);
     const cl = document.querySelector('.call-panel video') || document.getElementById('local-player');
     if (localVideoTrack && cl) localVideoTrack.play(cl);
     callActive = true;
-  } catch (e) { console.error(e); }
+  } catch (e) { 
+    console.error(e); 
+  }
 }
+
     document.getElementById('callBtn').addEventListener('click',startCall);
     document.getElementById('muteBtn').addEventListener('click',async event=>{if(!localTracks[0])return;muted=!muted;await localTracks[0].setEnabled(!muted);callState.textContent=muted?'Микрофон выключен':'Подключено';event.currentTarget.setAttribute('aria-label',muted?'Включить микрофон':'Выключить микрофон')});document.getElementById('endCallBtn').addEventListener('click',async()=>{try{await endCall()}catch(error){console.error('Не удалось завершить звонок:',error);showToast('Не удалось корректно завершить звонок');callPanel.hidden=true}});
     const modal=document.getElementById('newChatModal'),nameInput=document.getElementById('newChatName');document.getElementById('newChatBtn').addEventListener('click',()=>{modal.hidden=false;nameInput.focus()});document.getElementById('closeModalBtn').addEventListener('click',()=>{modal.hidden=true});modal.addEventListener('click',event=>{if(event.target===modal)modal.hidden=true});document.addEventListener('keydown',event=>{if(event.key==='Escape')modal.hidden=true});
