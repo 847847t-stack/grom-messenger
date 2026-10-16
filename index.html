@@ -80,6 +80,8 @@
     const callPanel=document.getElementById('callPanel'),callState=document.getElementById('callState'),localVideo=document.getElementById('localVideo'),remoteVideo=document.getElementById('remoteVideo');
     function clearVideo(container){container.querySelectorAll('video').forEach(video=>video.remove())}
     async function endCall(){callAttempt++;callActive=false;muted=false;document.getElementById('muteBtn').setAttribute('aria-label','Выключить микрофон');const client=rtcClient,tracks=localTracks;rtcClient=null;localTracks=[];try{if(client?.connectionState==='CONNECTED'&&tracks.length)await client.unpublish(tracks)}finally{try{if(client?.connectionState==='CONNECTED')await client.leave()}finally{tracks.forEach(track=>{track.stop();track.close()});clearVideo(localVideo);clearVideo(remoteVideo);callPanel.hidden=true}}
+var rtcClient = null;
+
 async function startCall() {
   if (callActive) return;
   try {
@@ -87,38 +89,40 @@ async function startCall() {
     if (cp) {
       cp.removeAttribute('hidden');
       cp.hidden = false;
+      // Принудительно выводим панель на весь экран поверх чатов:
       cp.style.display = 'flex';
+      cp.style.position = 'fixed';
+      cp.style.top = '0';
+      cp.style.left = '0';
+      cp.style.width = '100vw';
+      cp.style.height = '100vh';
+      cp.style.zIndex = '99999';
+      cp.style.backgroundColor = '#1a1a1a'; 
     }
 
     if (!rtcClient) {
       rtcClient = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
       rtcClient.on('user-published', async (user, mediaType) => {
         await rtcClient.subscribe(user, mediaType);
-        if (mediaType === 'video') {
-          user.videoTrack.play(cp || document.body);
-        }
-        if (mediaType === 'audio') {
-          user.audioTrack.play();
-        }
+        if (mediaType === 'video') user.videoTrack.play(cp || document.body);
+        if (mediaType === 'audio') user.audioTrack.play();
       });
     }
 
     const t = await AgoraRTC.createMicrophoneAndCameraTracks();
     localAudioTrack = t[0]; 
     localVideoTrack = t[1];
-
-    if (localVideoTrack && cp) {
-      localVideoTrack.play(cp);
-    }
+    
+    if (localVideoTrack && cp) localVideoTrack.play(cp);
 
     await rtcClient.join(agoraAppId, 'grom-call', null, null);
     await rtcClient.publish([localAudioTrack, localVideoTrack]);
     callActive = true;
   } catch (e) { 
-    console.error(e);
-    alert('Ошибка звонка: ' + (e.message || e));
+    alert('Критическая ошибка: ' + (e.message || e));
   }
 }
+
 
     document.getElementById('callBtn').addEventListener('click',startCall);
     document.getElementById('muteBtn').addEventListener('click',async event=>{if(!localTracks[0])return;muted=!muted;await localTracks[0].setEnabled(!muted);callState.textContent=muted?'Микрофон выключен':'Подключено';event.currentTarget.setAttribute('aria-label',muted?'Включить микрофон':'Выключить микрофон')});document.getElementById('endCallBtn').addEventListener('click',async()=>{try{await endCall()}catch(error){console.error('Не удалось завершить звонок:',error);showToast('Не удалось корректно завершить звонок');callPanel.hidden=true}});
