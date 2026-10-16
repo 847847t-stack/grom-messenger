@@ -79,27 +79,44 @@
     document.getElementById('emojiBtn').addEventListener('click',()=>{const start=messageInput.selectionStart,end=messageInput.selectionEnd;messageInput.setRangeText('🙂',start,end,'end');messageInput.dispatchEvent(new Event('input'));messageInput.focus()});
     const callPanel=document.getElementById('callPanel'),callState=document.getElementById('callState'),localVideo=document.getElementById('localVideo'),remoteVideo=document.getElementById('remoteVideo');
     function clearVideo(container){container.querySelectorAll('video').forEach(video=>video.remove())}
-    async function endCall(){callAttempt++;callActive=false;muted=false;document.getElementById('muteBtn').setAttribute('aria-label','Выключить микрофон');const client=rtcClient,tracks=localTracks;rtcClient=null;localTracks=[];try{if(client?.connectionState==='CONNECTED'&&tracks.length)await client.unpublish(tracks)}finally{try{if(client?.connectionState==='CONNECTED')await client.leave()}finally{tracks.forEach(track=>{track.stop();track.close()});clearVideo(localVideo);clearVideo(remoteVideo);callPanel.hidden=true}}}
+    async function endCall(){callAttempt++;callActive=false;muted=false;document.getElementById('muteBtn').setAttribute('aria-label','Выключить микрофон');const client=rtcClient,tracks=localTracks;rtcClient=null;localTracks=[];try{if(client?.connectionState==='CONNECTED'&&tracks.length)await client.unpublish(tracks)}finally{try{if(client?.connectionState==='CONNECTED')await client.leave()}finally{tracks.forEach(track=>{track.stop();track.close()});clearVideo(localVideo);clearVideo(remoteVideo);callPanel.hidden=true}}
 async function startCall() {
   if (callActive) return;
   try {
     const cp = document.getElementById('callPanel');
-    cp.removeAttribute('hidden');
-    cp.hidden = false;
-    cp.style.display = 'flex';
+    if (cp) {
+      cp.removeAttribute('hidden');
+      cp.hidden = false;
+      cp.style.display = 'flex';
+    }
+
+    if (!rtcClient) {
+      rtcClient = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+      rtcClient.on('user-published', async (user, mediaType) => {
+        await rtcClient.subscribe(user, mediaType);
+        if (mediaType === 'video') {
+          user.videoTrack.play(cp || document.body);
+        }
+        if (mediaType === 'audio') {
+          user.audioTrack.play();
+        }
+      });
+    }
 
     const t = await AgoraRTC.createMicrophoneAndCameraTracks();
     localAudioTrack = t[0]; 
     localVideoTrack = t[1];
-    
+
+    if (localVideoTrack && cp) {
+      localVideoTrack.play(cp);
+    }
+
     await rtcClient.join(agoraAppId, 'grom-call', null, null);
     await rtcClient.publish([localAudioTrack, localVideoTrack]);
-    
-    const cl = document.querySelector('.call-panel video') || document.getElementById('local-player');
-    if (localVideoTrack && cl) localVideoTrack.play(cl);
     callActive = true;
   } catch (e) { 
-    console.error(e); 
+    console.error(e);
+    alert('Ошибка звонка: ' + (e.message || e));
   }
 }
 
