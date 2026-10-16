@@ -83,14 +83,18 @@
 async function startCall() {
   if (callActive) return;
   try {
-    const callPanel = document.getElementById('callPanel');
-    callPanel.classList.remove('hidden');
+    const cp = document.getElementById('callPanel');
+    cp.removeAttribute('hidden');
+    cp.hidden = false;
+    cp.style.display = 'flex';
 
     const t = await AgoraRTC.createMicrophoneAndCameraTracks();
     localAudioTrack = t[0]; 
     localVideoTrack = t[1];
-    await rtcClient.join(agoraAppId, chat.id, null, null);
+    
+    await rtcClient.join(agoraAppId, 'grom-call', null, null);
     await rtcClient.publish([localAudioTrack, localVideoTrack]);
+    
     const cl = document.querySelector('.call-panel video') || document.getElementById('local-player');
     if (localVideoTrack && cl) localVideoTrack.play(cl);
     callActive = true;
