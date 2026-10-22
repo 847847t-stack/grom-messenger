@@ -47,7 +47,26 @@
   <div class="toast" id="toast" role="status"></div>
   <div class="modal-backdrop" id="newChatModal" hidden><form class="modal" id="newChatForm" aria-labelledby="newChatTitle"><div class="modal-head"><div class="modal-title" id="newChatTitle">Новый чат</div><button class="icon-btn" id="closeModalBtn" type="button" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button></div><label class="modal-label" for="newChatName">Имя собеседника</label><input class="modal-input" id="newChatName" maxlength="50" placeholder="Например, Мария" required autocomplete="off"><button class="modal-submit" type="submit">Создать чат</button></form></div>
   <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.20.0.js"></script>
-  <script>
+  <!-- Подключение Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC-QdjN30noX8W_gDi9Pjq3wPhZ8wfBV6g",
+    authDomain: "grom-4e98b.firebaseapp.com",
+    projectId: "grom-4e98b",
+    storageBucket: "grom-4e98b.firebasestorage.app",
+    messagingSenderId: "354417050402",
+    appId: "1:354417050402:web:fca3d89982763935c3db7b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  window.firebaseAuth = getAuth(app);
+  window.firebaseDb = getFirestore(app);
+</script>
+<script>
     const seedChats=[
       {id:'masha',name:'Маша Крылова',kind:'person',avatar:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',initials:'МК',online:true,unread:2,pinned:'В субботу в 12:00 у фонтана, не опаздывай ☀',messages:[{text:'Ты видела новый маршрут? Там теперь открыли классную кофейню.',time:'10:42',mine:false},{text:'Да! Давай зайдём после прогулки?',time:'10:44',mine:true},{text:'Супер, уже добавила в планы 🙌',time:'10:45',mine:false}]},
       {id:'team',name:'Команда ГРОМ',kind:'group',avatar:'',initials:'КГ',online:false,unread:0,messages:[{text:'Дизайн главного экрана уже в фигме',time:'10:31',mine:false},{text:'Посмотрю после созвона, спасибо!',time:'10:36',mine:true}]},
