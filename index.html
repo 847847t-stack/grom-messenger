@@ -76,6 +76,40 @@
   window.firebaseAuth = getAuth(app);
   window.firebaseDb = getFirestore(app);
 </script>
+  <!-- Логика авторизации -->
+<script type="module">
+  import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+  const auth = window.firebaseAuth;
+  const authOverlay = document.getElementById('authOverlay');
+  const emailInput = document.getElementById('authEmail');
+  const passwordInput = document.getElementById('authPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnRegister = document.getElementById('btnRegister');
+  const authError = document.getElementById('authError');
+
+  // Проверка статуса: скрывать экран, если пользователь уже вошел
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authOverlay.style.display = 'none';
+    } else {
+      authOverlay.style.display = 'flex';
+    }
+  });
+
+  // Кнопка Входа
+  btnLogin.addEventListener('click', () => {
+    signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+      .catch((error) => { authError.textContent = "Ошибка: неверный email или пароль"; });
+  });
+
+  // Кнопка Регистрации
+  btnRegister.addEventListener('click', () => {
+    createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+      .catch((error) => { authError.textContent = "Ошибка: " + (error.code === 'auth/email-already-in-use' ? 'Email уже занят' : error.message); });
+  });
+</script>
+
 <script>
     const seedChats=[
       {id:'masha',name:'Маша Крылова',kind:'person',avatar:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',initials:'МК',online:true,unread:2,pinned:'В субботу в 12:00 у фонтана, не опаздывай ☀',messages:[{text:'Ты видела новый маршрут? Там теперь открыли классную кофейню.',time:'10:42',mine:false},{text:'Да! Давай зайдём после прогулки?',time:'10:44',mine:true},{text:'Супер, уже добавила в планы 🙌',time:'10:45',mine:false}]},
