@@ -20,6 +20,12 @@
   </style>
 </head>
 <body>
+  <script>
+  window.addEventListener('error', function(event) {
+    alert("Ошибка на строке " + event.lineno + ": " + event.message);
+  });
+</script>
+
   <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
     <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2 4.5 13.2h6l-.8 8.8 9.8-12h-6.2l1-8z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
