@@ -60,6 +60,8 @@
   <input type="password" id="authPassword" placeholder="Пароль" style="margin-bottom: 20px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
   <button id="btnLogin" style="padding: 12px; margin-bottom: 10px; background: #8a2be2; color: white; border: none; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Войти</button>
   <button id="btnRegister" style="padding: 12px; background: transparent; color: #8a2be2; border: 2px solid #8a2be2; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Зарегистрироваться</button>
+  <button id="btnReset" type="button" style="padding: 12px; background: transparent; color: #a855f7; border: none; margin-top: 5px; font-size: 14px; cursor: pointer;">Забыли пароль?</button>
+
   <div id="authError" style="color: #ff4444; margin-top: 15px; font-size: 14px; text-align: center; max-width: 280px;"></div>
 </div>
 
@@ -84,7 +86,8 @@
 </script>
   <!-- Логика авторизации -->
 <script type="module">
-  import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+  import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
 
   const auth = window.firebaseAuth;
   const authOverlay = document.getElementById('authOverlay');
@@ -114,6 +117,22 @@
     createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
       .catch((error) => { authError.textContent = "Ошибка: " + (error.code === 'auth/email-already-in-use' ? 'Email уже занят' : error.message); });
   });
+ // Кнопка сброса пароля
+document.getElementById('btnReset').addEventListener('click', () => {
+  const email = emailInput.value.trim();
+  if (!email) {
+    alert('Сначала введите вашу почту в верхнее поле!');
+    return;
+  }
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('Письмо для сброса пароля отправлено! Проверьте вашу почту.');
+    })
+    .catch((error) => {
+      alert('Ошибка: ' + (error.code === 'auth/user-not-found' ? 'Пользователь не найден' : error.message));
+    });
+});
+
 </script>
 
 <script>
