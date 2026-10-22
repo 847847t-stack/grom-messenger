@@ -199,5 +199,24 @@ async function startCall() {
     document.getElementById('newChatForm').addEventListener('submit',event=>{event.preventDefault();const name=nameInput.value.trim();if(!name)return;const id=`chat-${Date.now()}`,initials=name.split(/\s+/).slice(0,2).map(part=>part[0]).join('').toLocaleUpperCase('ru');chats.unshift({id,name,kind:'person',avatar:'',initials,online:false,unread:0,messages:[]});activeId=id;activeFilter='all';document.querySelectorAll('.filter-btn').forEach(button=>button.classList.toggle('active',button.dataset.filter==='all'));document.getElementById('chatSearch').value='';saveChats();renderMessages();app.classList.add('chat-open');modal.hidden=true;nameInput.value=''});
     renderMessages();
   </script>
+  <!-- Логика поиска по @username -->
+<script>
+  setTimeout(() => {
+    const searchInput = document.querySelector('.search');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const text = e.target.value.trim();
+        if (text.startsWith('@')) {
+          searchInput.style.color = '#a855f7'; 
+          searchInput.style.fontWeight = 'bold';
+        } else {
+          searchInput.style.color = '';
+          searchInput.style.fontWeight = 'normal';
+        }
+      });
+    }
+  }, 1000);
+</script>
+
 </body>
 </html>
