@@ -47,6 +47,16 @@
   <div class="toast" id="toast" role="status"></div>
   <div class="modal-backdrop" id="newChatModal" hidden><form class="modal" id="newChatForm" aria-labelledby="newChatTitle"><div class="modal-head"><div class="modal-title" id="newChatTitle">Новый чат</div><button class="icon-btn" id="closeModalBtn" type="button" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button></div><label class="modal-label" for="newChatName">Имя собеседника</label><input class="modal-input" id="newChatName" maxlength="50" placeholder="Например, Мария" required autocomplete="off"><button class="modal-submit" type="submit">Создать чат</button></form></div>
   <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.20.0.js"></script>
+  <!-- Экран авторизации -->
+<div id="authOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #1a1a1a; z-index: 100000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; font-family: sans-serif;">
+  <h2 style="margin-bottom: 20px;">Вход в ГРОМ</h2>
+  <input type="email" id="authEmail" placeholder="Email" style="margin-bottom: 10px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
+  <input type="password" id="authPassword" placeholder="Пароль" style="margin-bottom: 20px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
+  <button id="btnLogin" style="padding: 12px; margin-bottom: 10px; background: #8a2be2; color: white; border: none; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Войти</button>
+  <button id="btnRegister" style="padding: 12px; background: transparent; color: #8a2be2; border: 2px solid #8a2be2; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Зарегистрироваться</button>
+  <div id="authError" style="color: #ff4444; margin-top: 15px; font-size: 14px; text-align: center; max-width: 280px;"></div>
+</div>
+
   <!-- Подключение Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
