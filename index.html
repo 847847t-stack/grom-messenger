@@ -17,6 +17,49 @@
     .messages{display:flex;min-height:0;flex:1;flex-direction:column;gap:10px;overflow-y:auto;padding:22px clamp(18px,7vw,112px) 28px;background-color:#151a1b;background-image:radial-gradient(ellipse at 16% 10%,rgba(102,137,106,.07),transparent 36%),radial-gradient(ellipse at 90% 80%,rgba(78,122,111,.06),transparent 32%),radial-gradient(rgba(201,226,204,.035) .7px,transparent .7px);background-size:auto,auto,18px 18px;scrollbar-width:thin;scrollbar-color:#3a4141 transparent}.day-stamp{align-self:center;margin:3px 0 7px;padding:6px 11px;border:1px solid #303735;border-radius:20px;background:#222827;color:#a8b2ad;font-size:10px}.message-row{display:flex;width:100%}.message-row.mine{justify-content:flex-end}.bubble{max-width:min(74%,490px);padding:10px 12px 7px;border:1px solid #303638;border-radius:4px 14px 14px 14px;background:#22282a;color:#e6ebe7;font-size:13px;line-height:1.48;overflow-wrap:anywhere;box-shadow:0 2px 8px #0002;animation:arrive .22s ease-out both}.mine .bubble{border-color:#3d4c3b;border-radius:14px 4px 14px 14px;background:#303d31}.bubble-meta{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:5px;color:#9ba9a0;font-size:9px}.mine .bubble-meta{color:#b5c3ae}.read-mark{color:var(--teal);font-size:12px}.attachment-chip{display:flex;align-items:center;gap:8px;margin-bottom:7px;padding:8px;border-radius:8px;background:#0003;color:var(--accent);font-size:11px}.attachment-chip svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8}.composer-wrap{flex:none;padding:12px clamp(14px,5vw,70px) 17px;border-top:1px solid #262d2e;background:#191e20}.composer{display:flex;align-items:flex-end;gap:8px;max-width:850px;margin:auto;padding:7px 8px;border:1px solid #343c3c;border-radius:13px;background:#22282a;transition:border-color .18s}.composer:focus-within{border-color:#627a4b}.composer .icon-btn{width:36px;height:36px;color:#a6b0ab}.message-input{min-height:36px;max-height:116px;flex:1;resize:none;padding:9px 4px 7px;border:0;outline:none;background:transparent;color:var(--text);font-size:13px;line-height:1.4}.message-input::placeholder{color:#77817e}.send-btn{display:grid;width:36px;height:36px;flex:none;place-items:center;border:0;border-radius:10px;background:var(--accent);color:var(--ink);cursor:pointer;transition:.16s}.send-btn:hover{transform:translateY(-1px);background:#d7ff83}.send-btn svg{width:17px;height:17px}.composer-hint{max-width:850px;margin:7px auto 0;color:#6f7a76;font-size:10px}.empty-state{align-self:center;margin:auto;color:var(--muted);font-size:13px;text-align:center}.empty-state strong{display:block;margin-bottom:6px;color:var(--soft);font:600 17px var(--display)}
     .call-panel{position:fixed;z-index:5;top:90px;right:22px;display:flex;width:min(560px,calc(100vw - 32px));flex-wrap:wrap;align-items:center;gap:12px;padding:14px;border:1px solid #465449;border-radius:12px;background:#202824;box-shadow:0 14px 45px #0005;animation:arrive .2s ease-out}.call-panel[hidden],.modal-backdrop[hidden]{display:none}.call-panel-copy{min-width:0;flex:1}.call-panel-title{font-size:12px;font-weight:700}.call-panel-state{margin-top:4px;color:var(--teal);font-size:10px}.call-videos{display:grid;width:100%;grid-template-columns:1fr 1fr;gap:8px;order:1}.call-video{position:relative;min-width:0;aspect-ratio:16/10;overflow:hidden;border-radius:9px;background:#101514}.call-video video{width:100%;height:100%;object-fit:cover}.call-video-label{position:absolute;bottom:7px;left:8px;padding:4px 7px;border-radius:5px;background:#0009;color:#fff;font-size:10px;pointer-events:none}.call-control{display:grid;width:34px;height:34px;place-items:center;border:0;border-radius:50%;background:#35413a;color:var(--text);cursor:pointer}.call-control.end{background:#c85b4f;color:#fff}.call-control svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.toast{position:fixed;z-index:8;bottom:92px;left:50%;max-width:calc(100vw - 32px);padding:10px 14px;border:1px solid #434c47;border-radius:9px;background:#242b28;color:var(--text);font-size:12px;box-shadow:0 8px 30px #0005;transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:.2s}.toast.show{transform:translate(-50%,0);opacity:1}.modal-backdrop{position:fixed;z-index:10;inset:0;display:grid;place-items:center;padding:18px;background:#040707ad;backdrop-filter:blur(5px)}.modal{width:min(400px,100%);padding:22px;border:1px solid var(--line);border-radius:13px;background:#1c2223;box-shadow:0 20px 70px #0007;animation:arrive .18s ease-out}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.modal-title{font:600 18px var(--display)}.modal-label{display:block;margin-bottom:7px;color:var(--soft);font-size:11px}.modal-input{width:100%;height:42px;margin-bottom:14px;padding:0 11px;border:1px solid #36403e;border-radius:8px;outline:none;background:#252c2d;color:var(--text);font-size:13px}.modal-input:focus{border-color:#708a49}.modal-submit{width:100%;height:40px;border:0;border-radius:8px;background:var(--accent);color:var(--ink);font-size:12px;font-weight:700;cursor:pointer}@keyframes arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:720px){body{height:100dvh}.app{grid-template-columns:1fr}.sidebar{grid-column:1;grid-row:1}.main{display:none;grid-column:1;grid-row:1}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.brand-row{height:66px;padding:0 17px}.sidebar-tools{padding:13px 14px 10px}.chat-list{padding:0 8px 8px}.chat-item{padding:10px}.sidebar-footer{padding:11px 16px}.chat-header{height:66px;gap:8px;padding:0 12px}.mobile-back{display:inline-grid;width:32px;height:36px;margin-right:-4px;color:var(--accent)}.mobile-back svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.header-actions .icon-btn{display:none}.call-btn{width:37px;height:37px;justify-content:center;padding:0;font-size:0}.call-btn svg{width:17px;height:17px}.pinned{min-height:48px;padding:7px 14px}.messages{gap:8px;padding:16px 13px 20px}.bubble{max-width:86%;font-size:12px}.composer-wrap{padding:10px 10px max(12px,env(safe-area-inset-bottom))}.composer-hint{display:none}.call-panel{top:76px;right:12px}}@media(max-width:380px){.brand-caption{display:none}.filter-row{gap:2px}.filter-btn{padding:7px 9px}.header-name{max-width:150px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  .menu-trigger { font-size: 24px; color: white; cursor: pointer; padding: 10px; }
+.overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 900; }
+.overlay.active { display: block; }
+.side-panel {
+  position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
+  background: #191d20; color: white; transition: left 0.3s ease; z-index: 1000;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.8);
+}
+.side-panel.open { left: 0; }
+.full-screen {
+  position: fixed; top: 0; left: 100%; width: 100%; height: 100%;
+  background: #111416; color: white; transition: left 0.3s ease; z-index: 1010;
+  overflow-y: auto;
+}
+.full-screen.open { left: 0; }
+.sidebar-header, .screen-header { 
+  display: flex; align-items: center; padding: 15px 20px; 
+  background: #202629; font-size: 18px; font-weight: bold; justify-content: space-between;
+}
+.screen-header { justify-content: flex-start; gap: 15px; }
+.back-btn, .icon-btn { cursor: pointer; font-size: 20px; background: none; border: none; color: white; }
+.list-item { 
+  padding: 15px 20px; display: flex; justify-content: space-between; 
+  border-bottom: 1px solid #2a3033; cursor: pointer; font-size: 16px;
+}
+.list-item:hover { background: #202629; }
+.list-value { color: #64b5f6; }
+.profile-hero { position: relative; height: 250px; background: #191d20; border-bottom: 1px solid #2a3033; }
+.profile-hero img { width: 100%; height: 100%; object-fit: cover; }
+.cam-fab { 
+  position: absolute; bottom: -25px; right: 20px; width: 55px; height: 55px; 
+  background: #64b5f6; border-radius: 50%; display: flex; align-items: center; 
+  justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.profile-data { padding: 40px 20px 20px; }
+.data-group { margin-bottom: 20px; border-bottom: 1px solid #2a3033; padding-bottom: 10px; }
+.data-group label { font-size: 13px; color: #64b5f6; display: block; margin-bottom: 5px; }
+.data-value { font-size: 16px; }
+.bio-input { 
+  width: 100%; background: transparent; border: none; color: white; 
+  font-size: 16px; outline: none; padding: 5px 0;
+}
+
   </style>
 </head>
 <body>
@@ -37,7 +80,10 @@
   </svg>
   <div class="app" id="app">
     <aside class="sidebar" aria-label="Список чатов">
-      <div class="brand-row"><a class="brand" href="#" aria-label="ГРОМ, главная"><span class="brand-mark"><svg><use href="#i-bolt"/></svg></span><span><span class="brand-name">ГРОМ</span><span class="brand-caption">говори громче</span></span></a><button class="icon-btn" id="newChatBtn" type="button" aria-label="Новый чат" title="Новый чат"><svg><use href="#i-plus"/></svg></button></div>
+      <div class="brand-row">
+      <div id="menu-btn" class="menu-trigger">☰</div>
+  
+        <a class="brand" href="#" aria-label="ГРОМ, главная"><span class="brand-mark"><svg><use href="#i-bolt"/></svg></span><span><span class="brand-name">ГРОМ</span><span class="brand-caption">говори громче</span></span></a><button class="icon-btn" id="newChatBtn" type="button" aria-label="Новый чат" title="Новый чат"><svg><use href="#i-plus"/></svg></button></div>
       <div class="sidebar-tools"><label class="search-wrap"><svg><use href="#i-search"/></svg><input class="search" id="chatSearch" type="search" placeholder="Поиск" aria-label="Поиск по чатам"></label><div class="filter-row" role="group" aria-label="Фильтр чатов"><button class="filter-btn active" type="button" data-filter="all">Все</button><button class="filter-btn" type="button" data-filter="unread">Непрочитанные</button><button class="filter-btn" type="button" data-filter="groups">Группы</button></div></div>
       <div class="section-label"><span>Сообщения</span><span id="chatCount"></span></div><div class="chat-list" id="chatList" role="listbox" aria-label="Ваши чаты"></div>
       <div class="sidebar-footer"><div class="avatar self-avatar">АВ</div><div><div class="self-name">Алексей Воронов</div><div class="self-status">В сети</div></div><button class="icon-btn footer-more" type="button" aria-label="Ещё" title="Ещё"><svg><use href="#i-more"/></svg></button></div>
@@ -53,6 +99,84 @@
   <div class="toast" id="toast" role="status"></div>
   <div class="modal-backdrop" id="newChatModal" hidden><form class="modal" id="newChatForm" aria-labelledby="newChatTitle"><div class="modal-head"><div class="modal-title" id="newChatTitle">Новый чат</div><button class="icon-btn" id="closeModalBtn" type="button" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button></div><label class="modal-label" for="newChatName">Имя собеседника</label><input class="modal-input" id="newChatName" maxlength="50" placeholder="Например, Мария" required autocomplete="off"><button class="modal-submit" type="submit">Создать чат</button></form></div>
   <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.20.0.js"></script>
+  <div id="sidebar" class="side-panel">
+  <div class="sidebar-header">
+    <span>Меню ГРОМ</span>
+    <button id="close-sidebar" class="icon-btn">✕</button>
+  </div>
+  <div class="list-item" onclick="openScreen('screen-profile')">👤 Мой профиль</div>
+  <div class="list-item" onclick="openScreen('screen-settings')">⚙️ Настройки</div>
+</div>
+
+<div id="screen-profile" class="full-screen">
+  <div class="screen-header">
+    <span class="back-btn" onclick="closeScreen('screen-profile')">←</span>
+    <span>Мой профиль</span>
+  </div>
+  <div class="profile-hero">
+    <img id="profile-main-img" src="https://via.placeholder.com/400x250" alt="Фото профиля">
+    <div class="cam-fab" onclick="document.getElementById('profile-upload').click()">📷</div>
+    <input type="file" id="profile-upload" accept="image/*, .jpg, .jpeg, .png, .webp" style="display: none;">
+  </div>
+  <div class="profile-data">
+    <div class="data-group">
+      <label>Аккаунт</label>
+      <div class="data-value">+7 000 000 00 00</div>
+    </div>
+    <div class="data-group">
+      <label>Имя пользователя</label>
+      <div class="data-value">@user</div>
+    </div>
+    <div class="data-group">
+      <label>О себе (до 50 символов)</label>
+      <input type="text" id="bio-input" class="bio-input" maxlength="50" placeholder="Напишите немного о себе">
+    </div>
+  </div>
+</div>
+
+<div id="screen-settings" class="full-screen">
+  <div class="screen-header">
+    <span class="back-btn" onclick="closeScreen('screen-settings')">←</span>
+    <span>Настройки</span>
+  </div>
+  <div class="list-item" onclick="openScreen('screen-privacy')">
+    <span>🔒 Конфиденциальность</span>
+  </div>
+  <div class="list-item">
+    <span>📱 Устройства</span>
+    <span class="list-value">1</span>
+  </div>
+  <div class="list-item">
+    <span>🌐 Язык</span>
+    <span class="list-value">Русский</span>
+  </div>
+</div>
+
+<div id="screen-privacy" class="full-screen">
+  <div class="screen-header">
+    <span class="back-btn" onclick="closeScreen('screen-privacy')">←</span>
+    <span>Конфиденциальность</span>
+  </div>
+  <div class="list-item">
+    <span>Номер телефона</span>
+    <span class="list-value">Никто</span>
+  </div>
+  <div class="list-item">
+    <span>Время захода</span>
+    <span class="list-value">Никто</span>
+  </div>
+  <div class="list-item">
+    <span>Фотография профиля</span>
+    <span class="list-value">Все</span>
+  </div>
+  <div class="list-item">
+    <span>Звонки</span>
+    <span class="list-value">Никто</span>
+  </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
   <!-- Экран авторизации -->
 <div id="authOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #1a1a1a; z-index: 100000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; font-family: sans-serif;">
   <h2 style="margin-bottom: 20px;">Вход в ГРОМ</h2>
@@ -235,6 +359,42 @@ async function startCall() {
       });
     }
   }, 1000);
+</script>
+<script>
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const profileUpload = document.getElementById('profile-upload');
+const profileMainImg = document.getElementById('profile-main-img');
+
+document.getElementById('menu-btn').addEventListener('click', () => {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+});
+
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+}
+document.getElementById('close-sidebar').addEventListener('click', closeSidebar);
+
+function openScreen(screenId) {
+  document.getElementById(screenId).classList.add('open');
+}
+
+function closeScreen(screenId) {
+  document.getElementById(screenId).classList.remove('open');
+}
+
+profileUpload.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      profileMainImg.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+});
 </script>
 
 </body>
