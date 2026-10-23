@@ -395,6 +395,38 @@ profileUpload.addEventListener('change', (event) => {
     reader.readAsDataURL(file);
   }
 });
+// Смена имени пользователя
+const usernameGroup = document.querySelectorAll('.data-group')[1];
+const usernameValue = usernameGroup.querySelector('.data-value');
+usernameGroup.style.cursor = 'pointer';
+usernameGroup.addEventListener('click', () => {
+  const newUsername = prompt('Введите новое имя пользователя:', usernameValue.innerText);
+  if (newUsername && newUsername.trim() !== '') {
+    usernameValue.innerText = newUsername.startsWith('@') ? newUsername : '@' + newUsername;
+  }
+});
+
+// Меню "Устройства" (показывает активные сессии)
+const devicesBtn = document.querySelectorAll('#screen-settings .list-item')[1];
+devicesBtn.addEventListener('click', () => {
+  alert('Активные устройства:\n\n1. Ваш телефон (Текущее)\nБраузер: Chrome (Android)\nСтатус: В сети');
+});
+
+// Переключение параметров конфиденциальности
+const privacyItems = document.querySelectorAll('#screen-privacy .list-item');
+const privacyOptions = ['Все', 'Мои контакты', 'Никто'];
+
+privacyItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const valueSpan = item.querySelector('.list-value');
+    if (valueSpan) {
+      let currentIndex = privacyOptions.indexOf(valueSpan.innerText);
+      let nextIndex = (currentIndex + 1) % privacyOptions.length;
+      valueSpan.innerText = privacyOptions[nextIndex];
+    }
+  });
+});
+
 </script>
 
 </body>
