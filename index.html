@@ -208,10 +208,11 @@
   <input type="password" id="authPassword" placeholder="Пароль" style="margin-bottom: 20px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
   <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 15px; max-width: 260px; text-align: left;">
   <input type="checkbox" id="agreeCheck" style="margin-top: 2px; width: 16px; height: 16px;">
-  <label for="agreeCheck" style="font-size: 11px; color: var(--text); line-height: 1.3;">
-    Я согласен(на) с <b style="cursor:pointer; color:#007bff;" onclick="openRules('rules')">Правилами мессенджера</b> и <b style="cursor:pointer; color:#007bff;" onclick="openRules('cookies')">использованием Cookies</b>
-  </label>
+  <div style="font-size: 11px; color: var(--text); line-height: 1.3;">
+    <label for="agreeCheck">Я согласен(на) с </label><b style="cursor:pointer; color:#007bff;" onclick="openRules('rules')">Правилами мессенджера</b> и <b style="cursor:pointer; color:#007bff;" onclick="openRules('cookies')">использованием Cookies</b>
+  </div>
 </div>
+
 
   <button id="btnLogin" style="padding: 12px; margin-bottom: 10px; background: #8a2be2; color: white; border: none; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Войти</button>
   <button id="btnRegister" style="padding: 12px; background: transparent; color: #8a2be2; border: 2px solid #8a2be2; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Зарегистрироваться</button>
