@@ -206,6 +206,13 @@
   <h2 style="margin-bottom: 20px;">Вход в ГРОМ</h2>
   <input type="email" id="authEmail" placeholder="Email" style="margin-bottom: 10px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
   <input type="password" id="authPassword" placeholder="Пароль" style="margin-bottom: 20px; padding: 12px; width: 260px; border-radius: 8px; border: none; background: #2a2a2a; color: white; outline: none;">
+  <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 15px; max-width: 260px; text-align: left;">
+  <input type="checkbox" id="agreeCheck" style="margin-top: 2px; width: 16px; height: 16px;">
+  <label for="agreeCheck" style="font-size: 11px; color: var(--text); line-height: 1.3;">
+    Я согласен(на) с <b style="cursor:pointer; color:#007bff;" onclick="openRules('rules')">Правилами мессенджера</b> и <b style="cursor:pointer; color:#007bff;" onclick="openRules('cookies')">использованием Cookies</b>
+  </label>
+</div>
+
   <button id="btnLogin" style="padding: 12px; margin-bottom: 10px; background: #8a2be2; color: white; border: none; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Войти</button>
   <button id="btnRegister" style="padding: 12px; background: transparent; color: #8a2be2; border: 2px solid #8a2be2; border-radius: 8px; width: 284px; font-weight: bold; cursor: pointer;">Зарегистрироваться</button>
   <button id="btnReset" type="button" style="padding: 12px; background: transparent; color: #a855f7; border: none; margin-top: 5px; font-size: 14px; cursor: pointer;">Забыли пароль?</button>
@@ -451,6 +458,29 @@ privacyItems.forEach(item => {
   });
 });
 
+</script>
+<!-- Окно с правилами -->
+<div id="rulesModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg); z-index: 10001; overflow-y: auto; padding: 20px; box-sizing: border-box; color: var(--text);">
+  <h3 id="rulesTitle" style="margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px;"></h3>
+  <div id="rulesContent" style="font-size: 14px; line-height: 1.5; margin-bottom: 20px;"></div>
+  <button onclick="document.getElementById('rulesModal').style.display='none'" style="width: 100%; padding: 12px; background: var(--text); color: var(--bg); border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Понятно, закрыть</button>
+</div>
+
+<script>
+  function openRules(type) {
+    const modal = document.getElementById('rulesModal');
+    const title = document.getElementById('rulesTitle');
+    const content = document.getElementById('rulesContent');
+    
+    if (type === 'rules') {
+      title.innerText = 'Правила мессенджера ГРОМ';
+      content.innerHTML = '<p><b>1. Уважение в чатах</b><br>ГРОМ создан для комфортного общения. Пожалуйста, уважайте других пользователей.</p><p><b>2. Ограничения</b><br>Запрещается рассылать спам, мошеннические ссылки и оскорблять участников. За серьезные нарушения аккаунт может быть заблокирован.</p><p><b>3. Ответственность</b><br>ГРОМ — это независимый проект. Пользователи сами несут ответственность за то, что они пишут и пересылают в личных сообщениях.</p>';
+    } else {
+      title.innerText = 'О данных и Cookies';
+      content.innerHTML = '<p><b>1. Зачем нам Cookies?</b><br>Мы используем память вашего устройства только для одной цели — чтобы запомнить вас и вам не приходилось вводить пароль при каждом запуске приложения.</p><p><b>2. Безопасность данных</b><br>Ваши сообщения и данные профиля хранятся на надежных облачных серверах. Мы никому их не передаем и не используем для рекламы.</p><p><b>3. Ваше согласие</b><br>Регистрируясь в приложении, вы просто разрешаете ГРОМу сохранить ваш Email для удобного и быстрого входа.</p>';
+    }
+    modal.style.display = 'block';
+  }
 </script>
 
 </body>
