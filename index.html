@@ -65,6 +65,8 @@
 }
 
 .brand-logo { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; margin-right: 12px; }
+.filter-btn { background: transparent; color: var(--muted); border: none; font-size: 15px; padding: 6px 16px; border-radius: 20px; font-weight: 500; margin-right: 5px; cursor: pointer; transition: 0.2s; }
+.filter-btn.active { background: var(--raised); color: var(--text); }
 
   
   </style>
@@ -92,7 +94,8 @@
   
         <a class="brand" href="#" aria-label="ГРОМ, главная"><><img src="IMG_20261023_101101_756.jpg" class="brand-logo" alt="ГРОМ">
 <span class="brand-name">ГРОМ</span><span class="brand-caption">говори громче</span></span></a><button class="icon-btn" id="newChatBtn" type="button" aria-label="Новый чат" title="Новый чат"><svg><use href="#i-plus"/></svg></button></div>
-      <div class="sidebar-tools"><label class="search-wrap"><svg><use href="#i-search"/></svg><input class="search" id="chatSearch" type="search" placeholder="Поиск" aria-label="Поиск по чатам"></label><div class="filter-row" role="group" aria-label="Фильтр чатов"><button class="filter-btn active" type="button" data-filter="all">Все</button><button class="filter-btn" type="button" data-filter="unread">Непрочитанные</button><button class="filter-btn" type="button" data-filter="groups">Группы</button></div></div>
+      <div class="sidebar-tools"><label class="search-wrap"><svg><use href="#i-search"/></svg><input class="search" id="chatSearch" type="search" placeholder="Поиск" aria-label="Поиск по чатам"></label><div class="filter-row" role="group" aria-label="Фильтр чатов"><button class="filter-btn active" type="button">Все чаты</button><button class="filter-btn" type="button">Личные</button></div></div>
+
       <div class="section-label"><span>Сообщения</span><span id="chatCount"></span></div><div class="chat-list" id="chatList" role="listbox" aria-label="Ваши чаты"></div>
       <div class="sidebar-footer"><div class="avatar self-avatar">АВ</div><div><div class="self-name">Алексей Воронов</div><div class="self-status">В сети</div></div><button class="icon-btn footer-more" type="button" aria-label="Ещё" title="Ещё"><svg><use href="#i-more"/></svg></button></div>
     </aside>
